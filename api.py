@@ -6,7 +6,7 @@ from datetime import datetime
 from requests.api import get
 
 # 무슨 프로그램인지 출력
-print("이 프로그램은 허위정보와 과대광고가 있는 식품을 알려주는 프로그램입니다! ")
+print("이 프로그램은 허위정보와 과대광고가 있는 식품을 알려주는 프로그램입니다! \n")
 
 # 서비스 키가 들어있는 secret.json 파일오픈
 with open("secret.json") as f:
@@ -37,6 +37,15 @@ get_data = requests.get(url+unquote(queryParams))
 
 # json으로 받은 res를 딕셔너리로 저장
 res = get_data.json()
+res = res['body']['items']
 
 # 딕셔너리로 저장된 res를 출력
-print(res)
+print("====허위정보 & 과대광고가 있는 상품회사====")
+for i in range(0, 3):
+    print(res[i]['ENTRPS'])
+
+print('\n')
+
+print("====허위정보 & 과대광고가 있는 상품명====")
+for i in range(0, 3):
+    print(res[i]['PRDUCT'])
